@@ -1,6 +1,24 @@
 <resources>
     <string name="app_name">CompositionLocalSnippet</string>
+    <string name="button_next">Next</string>
+
+    <!-- basics -->
+    <string name="basics_current_theme">Current: %1$s</string>
+    <string name="basics_details">Your details:</string>
+    <string name="basics_inner_component_hint">From an inner component: Hello, %1$s!</string>
+    <string name="basics_toggle_theme">Toggle Theme</string>
+    <string name="basics_welcome">Welcome, %1$s!</string>
+
+    <!-- static composition -->
+    <string name="sc_dynamic_hint">Dynamic Analytics Example:</string>
+    <string name="sc_dynamic_time">"Current time is "</string>
+    <string name="sc_explainer">StaticCompositionLocal is faster, but if you change its value, the entire block is recomposed. You will be able to see it by pressing the \"refresh\" button and observing the counter value.</string>
+    <string name="sc_inbetween_screens_hint">CompositionLocal works on a different screen</string>
+    <string name="sc_refresh">Refresh services</string>
+    <string name="sc_static_hint">Static Analytics Example:</string>
+    <string name="sc_static_time">"Current time is "</string>
 
     <!-- screen labels -->
     <string name="label_basics_screen">Basics</string>
+    <string name="label_static_composition">Static Composition</string>
 </resources>

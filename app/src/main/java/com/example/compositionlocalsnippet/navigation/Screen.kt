@@ -12,4 +12,10 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int) {
         route = "basics",
         resourceId = R.string.label_basics_screen
     )
+
+    @Serializable
+    data object StaticComposition : Screen(
+        route = "staticComposition",
+        resourceId = R.string.label_static_composition
+    )
 }

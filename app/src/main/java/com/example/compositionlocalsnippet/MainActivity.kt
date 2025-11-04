@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compositionlocalsnippet.navigation.Screen
 import com.example.compositionlocalsnippet.screen.BasicsScreen
+import com.example.compositionlocalsnippet.screen.StaticCompositionScreen
 import com.example.compositionlocalsnippet.theme.CompositionLocalSnippetTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +29,13 @@ class MainActivity : ComponentActivity() {
                 startDestination = Screen.Basics
             ) {
                 composable<Screen.Basics> {
-                    BasicsScreen()
+                    BasicsScreen(
+                        onNextClick = { navController.navigate(Screen.StaticComposition) }
+                    )
+                }
+
+                composable<Screen.StaticComposition> {
+                    StaticCompositionScreen()
                 }
             }
         }

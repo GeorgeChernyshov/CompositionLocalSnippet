@@ -37,7 +37,7 @@ val LocalUserName = compositionLocalOf<String> { error("No user name provided") 
 val LocalThemeMode = compositionLocalOf { ThemeMode.LIGHT }
 
 @Composable
-fun BasicsScreen() {
+fun BasicsScreen(onNextClick: () -> Unit) {
     var currentTheme by remember { mutableStateOf(ThemeMode.LIGHT) }
 
     Scaffold(
@@ -48,6 +48,14 @@ fun BasicsScreen() {
             LocalThemeMode provides currentTheme
         ) {
             val backgroundColor = if (LocalThemeMode.current == ThemeMode.LIGHT)
+                Color(0xFFFFFFFF)
+            else Color(0xFF000000)
+
+            val buttonBackgroundColor = if (LocalThemeMode.current == ThemeMode.LIGHT)
+                Purple40
+            else Purple80
+
+            val buttonTextColor = if (LocalThemeMode.current == ThemeMode.LIGHT)
                 Color(0xFFFFFFFF)
             else Color(0xFF000000)
 
@@ -69,6 +77,18 @@ fun BasicsScreen() {
                         else ThemeMode.LIGHT
                     }
                 )
+
+                Button(
+                    onClick = onNextClick,
+                    colors = ButtonColors(
+                        containerColor = buttonBackgroundColor,
+                        contentColor = buttonTextColor,
+                        disabledContainerColor = buttonBackgroundColor,
+                        disabledContentColor = buttonTextColor
+                    )
+                ) {
+                    Text(text = stringResource(R.string.button_next))
+                }
             }
         }
     }
@@ -91,7 +111,7 @@ fun WelcomeMessage() {
     // 3. Consume the value
     val userName = LocalUserName.current
     Text(
-        text = "Welcome, $userName!",
+        text = stringResource(R.string.basics_welcome, userName),
         color = textColor
     )
 }
@@ -104,7 +124,7 @@ fun UserDetails() {
 
     Column {
         Text(
-            text = "Your details:",
+            text = stringResource(R.string.basics_details),
             color = textColor
         )
 
@@ -126,7 +146,10 @@ fun InnerComponent() {
     else Color(0xFFFFFFFF)
 
     Text(
-        text = "From an inner component: Hello, ${LocalUserName.current}!",
+        text = stringResource(
+            R.string.basics_inner_component_hint,
+            LocalUserName.current
+        ),
         color = textColor
     )
 }
@@ -160,14 +183,17 @@ fun ThemeSwitcher(onToggleTheme: () -> Unit) {
                 disabledContentColor = buttonTextColor
             )
         ) {
-            Text("Toggle Theme")
+            Text(stringResource(R.string.basics_toggle_theme))
         }
 
         Spacer(Modifier.weight(1f))
 
         Text(
-            text = "Current: ${LocalThemeMode.current}",
+            text = stringResource(
+                R.string.basics_current_theme,
+                LocalThemeMode.current
+            ),
             color = textColor
-        ) // 3. Consume the theme mode
+        )
     }
 }
