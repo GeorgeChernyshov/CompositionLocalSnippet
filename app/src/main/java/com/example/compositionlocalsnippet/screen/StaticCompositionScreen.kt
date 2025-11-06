@@ -40,7 +40,7 @@ val LocalDynamicAnalytics = compositionLocalOf { AnalyticsService() }
 val LocalStaticAnalytics = staticCompositionLocalOf { AnalyticsService() }
 
 @Composable
-fun StaticCompositionScreen() {
+fun StaticCompositionScreen(onNextClick: () -> Unit) {
     var dynamicService by remember {
         mutableStateOf(AnalyticsService())
     }
@@ -75,7 +75,7 @@ fun StaticCompositionScreen() {
                         text = stringResource(R.string.sc_dynamic_time) + System.currentTimeMillis()
                     )
 
-                    AnalyticsLogger(type = "Dynamic")
+                    AnalyticsLogger(type = AnalyticsType.DYNAMIC)
                 }
 
                 Text(stringResource(R.string.sc_static_hint))
@@ -85,7 +85,7 @@ fun StaticCompositionScreen() {
                         text = stringResource(R.string.sc_static_time) + System.currentTimeMillis()
                     )
 
-                    AnalyticsLogger(type = "Static")
+                    AnalyticsLogger(type = AnalyticsType.STATIC)
                 }
 
                 Button(onClick = {
@@ -94,14 +94,18 @@ fun StaticCompositionScreen() {
                 }) {
                     Text(stringResource(R.string.sc_refresh))
                 }
+
+                Button(onClick = onNextClick) {
+                    Text(stringResource(R.string.button_next))
+                }
             }
         }
     }
 }
 
 @Composable
-fun AnalyticsLogger(type: String) {
-    val analytics = if (type == "Dynamic")
+fun AnalyticsLogger(type: AnalyticsType) {
+    val analytics = if (type == AnalyticsType.DYNAMIC)
         LocalDynamicAnalytics.current
     else LocalStaticAnalytics.current
 
@@ -114,4 +118,8 @@ fun AnalyticsLogger(type: String) {
 
         Text("$type service event count: ${analytics.eventCount}")
     }
+}
+
+enum class AnalyticsType {
+    STATIC, DYNAMIC;
 }

@@ -9,6 +9,13 @@
     <string name="basics_toggle_theme">Toggle Theme</string>
     <string name="basics_welcome">Welcome, %1$s!</string>
 
+    <!-- scoping -->
+    <string name="scoping_default_analytics_count">Default service event count: %1$d</string>
+    <string name="scoping_default_analytics_hint">This reads LocalDynamicAnalytics without a Provider:</string>
+    <string name="scoping_default_analytics_log">Log Default Event</string>
+    <string name="scoping_inner">Inner Scope</string>
+    <string name="scoping_outer">Outer Scope</string>
+
     <!-- static composition -->
     <string name="sc_dynamic_hint">Dynamic Analytics Example:</string>
     <string name="sc_dynamic_time">"Current time is "</string>
@@ -20,5 +27,6 @@
 
     <!-- screen labels -->
     <string name="label_basics_screen">Basics</string>
+    <string name="label_scoping">Scoping</string>
     <string name="label_static_composition">Static Composition</string>
 </resources>

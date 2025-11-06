@@ -14,6 +14,12 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int) {
     )
 
     @Serializable
+    data object Scoping : Screen(
+        route = "scoping",
+        resourceId = R.string.label_scoping
+    )
+
+    @Serializable
     data object StaticComposition : Screen(
         route = "staticComposition",
         resourceId = R.string.label_static_composition
