@@ -1,0 +1,1 @@
+Small demonstration of CompositionLocal capabilities
